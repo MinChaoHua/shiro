@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en" >
+<!--xmlns:th="http://www.thymeleaf.org"-->
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link rel="stylesheet" href="/static/easyui/css/icon.css">
+    <link rel="stylesheet" href="/static/easyui/css/easyui.css">
+
+    <!--要放在jquery.easyui.min.js-->
+    <script  src="/static/easyui/js/jquery.js"> </script>
+
+    <script  src="/static/easyui/js/jquery.easyui.min.js"></script>
+
+</head>
+
+<body >
+<div>
+    <ul id="tt" class="easyui-tree" >
+
+    </ul>
+</div>
+
+</body>
+
+<script type="text/javascript">
+
+     $(function () {
+         $("#tt").tree({
+             //checkbox: true,
+             animate:true,
+             lines:true,
+             url: '/system/loadRelTree?id=0',//这是第一次加载树的url 加载根节点
+             loadFilter:function(data){
+                 console.log(data.treeJson);
+                 return data.treeJson;
+             },
+             onExpand:function(node){
+                 alert(node.id);
+                 $("#tt").tree({url:'/system/loadRelTree?id='+node.id});//这是点击父节点的时候发送请求去加载子节点
+                 alert(node.text);
+             }
+         });
+     })
+</script >
+
+
+</html>

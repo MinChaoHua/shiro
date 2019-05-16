@@ -20,6 +20,23 @@
     from tb_menu
     where menu_id = #{menuId,jdbcType=INTEGER}
   </select>
+
+  <!--查询父目录-->
+  <select id="selectMenuByParentId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select
+    <include refid="Base_Column_List" />
+    from tb_menu
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+
+  <!--查询是否有子目录-->
+  <select id="selectMenuChildCount" parameterType="java.lang.Integer" resultType="java.lang.Integer">
+    select
+    COUNT(*)
+    from tb_menu
+    where parent_id = #{parentId,jdbcType=INTEGER}
+  </select>
+
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
     delete from tb_menu
     where menu_id = #{menuId,jdbcType=INTEGER}

@@ -80,4 +80,18 @@ public class Menu {
     public void setSortNum(Integer sortNum) {
         this.sortNum = sortNum;
     }
+
+    @Override
+    public String toString() {
+        return "Menu{" +
+                "menuId=" + menuId +
+                ", name='" + name + '\'' +
+                ", action='" + action + '\'' +
+                ", url='" + url + '\'' +
+                ", parentId=" + parentId +
+                ", status=" + status +
+                ", menuType=" + menuType +
+                ", sortNum=" + sortNum +
+                '}';
+    }
 }
